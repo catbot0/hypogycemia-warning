@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:theme="@style/ThemeOverlay.HypoIntervention.FullscreenContainer"
+    tools:context=".FullscreenActivity_standard">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layoutSize"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/imageWidth"
+            android:layout_height="@dimen/imageHeight"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_standard"
+            android:contentDescription="@string/imageDescription" />
+
+        <TextView
+            android:id="@+id/textViewWarning"
+            android:layout_width="wrap_content"
+            android:layout_height="92dp"
+            android:layout_gravity="center"
+            android:text="@string/interventionTextWarning"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeTitle"
+            tools:targetApi="o" />
+
+        <TextView
+            android:id="@+id/textViewRecommendation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/interventionTextRecommendation"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeRecommendation"
+            tools:targetApi="o" />
+
+    </LinearLayout>
+</RelativeLayout>

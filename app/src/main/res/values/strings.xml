@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Hypo Intervention</string>
+    <string name="imageDescription" translatable="false">Warning sign</string>
+    <string name="interventionTextWarning" translatable="true">Hypoglykämiegefahr</string>
+    <string name="interventionTextRecommendation" translatable="true">Bitte anhalten und \n Blutzucker überprüfen!</string>
+    <string name="ButtonVoice" translatable="false">TTS</string>
+    <string name="ButtonStandard" translatable="false">Beep</string>
+    <string name="title_activity_fullscreen_standard">Standard</string>
+    <string name="title_activity_fullscreen_voice">Voice</string>
+    <string name="my_image_description">Simulation of a navigation system</string>
+</resources>

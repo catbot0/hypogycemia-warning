@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSizeTitle">60sp</dimen>
+    <dimen name="textSizeRecommendation">40sp</dimen>
+    <dimen name="imageHeight">220dp</dimen>
+    <dimen name="imageWidth">400dp</dimen>
+    <dimen name="layoutSize">500dp</dimen>
+    <dimen name="buttomMargin_tab">135dp</dimen>
+    <dimen name="buttomMargin">20dp</dimen>
+    <dimen name="buttonWidth">60dp</dimen>
+    <dimen name="buttonWidth_tab">130dp</dimen>
+    <dimen name="buttonHeight">70dp</dimen>
+    <dimen name="buttonHeight_tab">145dp</dimen>
+</resources>
