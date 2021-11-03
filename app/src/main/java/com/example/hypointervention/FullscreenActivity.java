@@ -45,9 +45,7 @@ public class FullscreenActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             requestAudioPermission();
-            // TODO: add some stuff to tell the idiot using it, that it does not work bitches!
-            // Häve a lot of fun doing this shizzl bedizzl! tschüss!
-        }
+          }
     }
 
     private void launchStandardActivity() {
@@ -62,6 +60,7 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     private void requestAudioPermission() {
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, RECORD_REQUEST);
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.RECORD_AUDIO}, RECORD_REQUEST);
     }
 }
