@@ -32,7 +32,6 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
 
-
     /*private void requestAudioPermission() {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.RECORD_AUDIO}, PERM_REQ_CODE);
