@@ -1,10 +1,13 @@
 package com.example.hypointervention;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -12,7 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class FullscreenActivity extends AppCompatActivity {
 
-    //private static final int PERM_REQ_CODE = 23;
+    public static final int RECORD_REQUEST = 1;
+
     Button voice_button;
     Button standard_button;
     @Override
@@ -27,25 +31,37 @@ public class FullscreenActivity extends AppCompatActivity {
         standard_button.setOnClickListener(v -> launchStandardActivity());
     }
 
-    /*private boolean checkAudioPermission() {
-        return ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
-    }
 
-    private void requestAudioPermission() {
+
+    /*private void requestAudioPermission() {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.RECORD_AUDIO}, PERM_REQ_CODE);
     }*/
 
     private void launchVoiceActivity() {
-        Intent intent = new Intent(FullscreenActivity.this,
-                FullscreenActivity_voice.class);
-        startActivity(intent);
+        if (checkAudioPermission()) {
+            Intent intent = new Intent(FullscreenActivity.this,
+                    FullscreenActivity_voice.class);
+            startActivity(intent);
+        } else {
+            requestAudioPermission();
+            // TODO: add some stuff to tell the idiot using it, that it does not work bitches!
+            // Häve a lot of fun doing this shizzl bedizzl! tschüss!
+        }
     }
 
     private void launchStandardActivity() {
         Intent intent = new Intent(FullscreenActivity.this,
                 FullscreenActivity_standard.class);
         startActivity(intent);
+    }
+
+    private boolean checkAudioPermission() {
+        return ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestAudioPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, RECORD_REQUEST);
     }
 }
