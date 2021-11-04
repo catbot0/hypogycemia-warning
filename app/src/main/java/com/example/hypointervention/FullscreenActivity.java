@@ -15,7 +15,7 @@ import androidx.core.app.ActivityCompat;
  */
 public class FullscreenActivity extends AppCompatActivity {
 
-    public static final int RECORD_REQUEST = 1;
+    public static final int PERMISSION_REQUEST = 1;
 
     Button voice_button;
     Button standard_button;
@@ -24,6 +24,10 @@ public class FullscreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
 
+        if (!checkAudioPermission() | !checkWritePermission()) {
+            requestPermission();
+        }
+
         voice_button =  findViewById(R.id.voice_btn);
         voice_button.setOnClickListener(v -> launchVoiceActivity());
 
@@ -31,26 +35,24 @@ public class FullscreenActivity extends AppCompatActivity {
         standard_button.setOnClickListener(v -> launchStandardActivity());
     }
 
-
-    /*private void requestAudioPermission() {
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.RECORD_AUDIO}, PERM_REQ_CODE);
-    }*/
-
     private void launchVoiceActivity() {
         if (checkAudioPermission()) {
             Intent intent = new Intent(FullscreenActivity.this,
                     FullscreenActivity_voice.class);
             startActivity(intent);
         } else {
-            requestAudioPermission();
+            requestPermission();
           }
     }
 
     private void launchStandardActivity() {
-        Intent intent = new Intent(FullscreenActivity.this,
-                FullscreenActivity_standard.class);
-        startActivity(intent);
+        if (checkAudioPermission()) {
+            Intent intent = new Intent(FullscreenActivity.this,
+                    FullscreenActivity_standard.class);
+            startActivity(intent);
+        } else {
+            requestPermission();
+        }
     }
 
     private boolean checkAudioPermission() {
@@ -58,8 +60,15 @@ public class FullscreenActivity extends AppCompatActivity {
                 Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
     }
 
-    private void requestAudioPermission() {
+    private boolean checkWritePermission() {
+        return ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[]{
-                Manifest.permission.RECORD_AUDIO}, RECORD_REQUEST);
+                Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                PERMISSION_REQUEST);
     }
 }

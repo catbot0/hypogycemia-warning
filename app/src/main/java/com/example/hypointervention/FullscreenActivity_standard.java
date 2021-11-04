@@ -1,9 +1,13 @@
 package com.example.hypointervention;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -13,6 +17,11 @@ public class FullscreenActivity_standard extends AppCompatActivity {
 
     private AudioPlayer mAudioPlayer;
 
+    private Logger Logger;
+
+    private static final String TAG = "Standard";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +30,35 @@ public class FullscreenActivity_standard extends AppCompatActivity {
         imageView.setImageResource(R.drawable.ic_standard);
 
         mAudioPlayer = new AudioPlayer();
+
+        Logger = new Logger();
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        Instant instant = Instant.now();
+
+
+
+        String timestamp;
+        timestamp = DateTimeFormatter.ISO_INSTANT.format(instant);
+
         startPlayingAudio(R.raw.beep);
-        // TODO: log timestamp
+
+        String log;
+        log = timestamp + ";" + TAG;
+
+        Log.i(TAG, log);
+        if(log == null) {
+            Log.e("Exception", "Problem with 'log' object ");
+        }else {
+            Log.i(TAG, "'log' object is non-null");
+            Logger.appendLog(log);
+        }
+
     }
 
     @Override

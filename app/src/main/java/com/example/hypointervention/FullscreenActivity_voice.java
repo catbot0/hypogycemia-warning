@@ -1,8 +1,12 @@
 package com.example.hypointervention;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 
 
 public class FullscreenActivity_voice extends AppCompatActivity {
@@ -10,6 +14,10 @@ public class FullscreenActivity_voice extends AppCompatActivity {
     private BlobVisualizer mVisualizer;
 
     private AudioPlayer mAudioPlayer;
+
+    private Logger Logger;
+
+    private static final String TAG = "Voice";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,14 +27,34 @@ public class FullscreenActivity_voice extends AppCompatActivity {
         mVisualizer = findViewById(R.id.blob);
 
         mAudioPlayer = new AudioPlayer();
+
+        Logger = new Logger();
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        Instant instant = Instant.now();
+
+
+
+        String timestamp;
+        timestamp = DateTimeFormatter.ISO_INSTANT.format(instant);
+
         startPlayingAudio(R.raw.voice);
-        // TODO: log timestamp
+
+        String log;
+        log = timestamp + ";" + TAG;
+
+        Log.i(TAG, log);
+        if(log == null) {
+            Log.e("Exception", "Problem with 'log' object ");
+        }else {
+            Log.i(TAG, "'log' object is non-null");
+            Logger.appendLog(log);
+        }
     }
 
     @Override
