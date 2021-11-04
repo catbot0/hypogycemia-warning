@@ -55,6 +55,8 @@ public class FullscreenActivity_voice extends AppCompatActivity {
             Log.i(TAG, "'log' object is non-null");
             Logger.appendLog(log);
         }
+
+
     }
 
     @Override
