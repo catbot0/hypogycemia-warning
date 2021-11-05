@@ -45,25 +45,38 @@ public class FullscreenActivity_voice_LED extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        Instant instant = Instant.now();
-
         voice_led_activityVisible = true;
 
-        String timestamp;
-        timestamp = DateTimeFormatter.ISO_INSTANT.format(instant);
+        Timer start = new Timer();
+        start.schedule(new TimerTask() {
 
-        startPlayingVoice(R.raw.voice);
+                           public void run() {
+                               if(voice_led_activityVisible) {
+                                   Log.w(TAG, "intervention about to start");
+                                   Instant instant = Instant.now();
 
-        String log;
-        log = timestamp + ";" + TAG;
+                                   String timestamp;
+                                   timestamp = DateTimeFormatter.ISO_INSTANT.format(instant);
 
-        Log.i(TAG, log);
-        if(log == null) {
-            Log.e("Exception", "Problem with 'log' object ");
-        }else {
-            Log.i(TAG, "'log' object is non-null");
-            Logger.appendLog(log);
-        }
+                                   startPlayingVoice(R.raw.voice);
+
+                                   String log;
+                                   log = timestamp + ";" + TAG;
+
+                                   Log.i(TAG, log);
+                                   if(log == null) {
+                                       Log.e("Exception", "Problem with 'log' object ");
+                                   }else {
+                                       Log.i(TAG, "'log' object is non-null");
+                                       Logger.appendLog(log);
+                                   }
+
+                                   Log.w(TAG, "intervention played");
+                               }
+                           }
+
+                       },
+                2000);
 
     }
 

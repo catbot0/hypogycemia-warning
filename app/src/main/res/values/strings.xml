@@ -3,9 +3,9 @@
     <string name="imageDescription" translatable="false">Warning sign</string>
     <string name="interventionTextWarning" translatable="true">Hypoglykämiegefahr</string>
     <string name="interventionTextRecommendation" translatable="true">Bitte anhalten und \n Blutzucker überprüfen!</string>
-    <string name="ButtonVoice" translatable="false">TTS</string>
-    <string name="ButtonVoiceLed" translatable="false">TTS + LED</string>
-    <string name="ButtonStandard" translatable="false">Beep</string>
+    <string name="ButtonVoice" translatable="false">V</string>
+    <string name="ButtonVoiceLed" translatable="false">VL</string>
+    <string name="ButtonStandard" translatable="false">STD</string>
     <string name="title_activity_fullscreen_standard">Standard</string>
     <string name="title_activity_fullscreen_voice">Voice</string>
     <string name="title_activity_fullscreen_voice_led">Voice + LED</string>

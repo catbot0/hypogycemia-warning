@@ -45,25 +45,38 @@ public class FullscreenActivity_voice extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        Instant instant = Instant.now();
-
         voice_activityVisible = true;
 
-        String timestamp;
-        timestamp = DateTimeFormatter.ISO_INSTANT.format(instant);
+        Timer start = new Timer();
+        start.schedule(new TimerTask() {
 
-        startPlayingVoice(R.raw.voice);
+                           public void run() {
+                               if(voice_activityVisible) {
+                                   Log.w(TAG, "intervention about to start");
+                                   Instant instant = Instant.now();
 
-        String log;
-        log = timestamp + ";" + TAG;
+                                   String timestamp;
+                                   timestamp = DateTimeFormatter.ISO_INSTANT.format(instant);
 
-        Log.i(TAG, log);
-        if(log == null) {
-            Log.e("Exception", "Problem with 'log' object ");
-        }else {
-            Log.i(TAG, "'log' object is non-null");
-            Logger.appendLog(log);
-        }
+                                   startPlayingVoice(R.raw.voice);
+
+                                   String log;
+                                   log = timestamp + ";" + TAG;
+
+                                   Log.i(TAG, log);
+                                   if(log == null) {
+                                       Log.e("Exception", "Problem with 'log' object ");
+                                   }else {
+                                       Log.i(TAG, "'log' object is non-null");
+                                       Logger.appendLog(log);
+                                   }
+
+                                   Log.w(TAG, "intervention played");
+                               }
+                           }
+
+                       },
+                2000);
 
     }
 
@@ -82,13 +95,14 @@ public class FullscreenActivity_voice extends AppCompatActivity {
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
 
-                public void run() {
-                    if(voice_activityVisible) {
-                        launchMainActivity();
-                    }
-                }
+                               public void run() {
+                                   if(voice_activityVisible) {
+                                       launchMainActivity();
+                                   }
+                               }
 
-            }, 15000);
+                           },
+                    15000);
         });
         int audioSessionId = mAudioPlayer.getAudioSessionId();
         if (audioSessionId != -1)

@@ -12,7 +12,7 @@
         android:id="@+id/blob"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        custom:avColor="@color/red"
+        custom:avColor="@color/voice_assistant_dark"
         custom:avDensity="0.8"
         custom:avSpeed="slow"
         custom:avType="fill"

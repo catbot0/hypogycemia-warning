@@ -33,7 +33,7 @@ public class Circle extends View {
     }
 
     public int getColorStroke(Context context) {
-        int col = ContextCompat.getColor(context, R.color.red);
+        int col = ContextCompat.getColor(context, R.color.voice_assistant_light);
         return col;
     }
 
