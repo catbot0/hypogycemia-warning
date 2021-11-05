@@ -13,6 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HypoIntervention">
         <activity
+            android:name=".FullscreenActivity_voice_LED"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_fullscreen_voice_led"
+            android:theme="@style/Theme.HypoIntervention.Fullscreen" />
+        <activity
             android:name=".FullscreenActivity_voice"
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|screenSize"

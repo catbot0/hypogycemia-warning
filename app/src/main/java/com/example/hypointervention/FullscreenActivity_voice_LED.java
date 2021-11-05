@@ -3,7 +3,6 @@ package com.example.hypointervention;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,28 +11,29 @@ import java.time.format.DateTimeFormatter;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
-public class FullscreenActivity_standard extends AppCompatActivity {
+
+public class FullscreenActivity_voice_LED extends AppCompatActivity {
+
+    private BlobVisualizer mVisualizer;
 
     private AudioPlayer mAudioPlayer;
 
     private Logger Logger;
 
-    private static final String TAG = "Standard";
+    private static final String TAG = "Voice + LED";
 
-    static boolean standard_activityVisible = false;
+    static boolean voice_led_activityVisible = false;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fullscreen_standard);
+        setContentView(R.layout.activity_fullscreen_voice_led);
 
-        ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.drawable.ic_standard);
+        mVisualizer = findViewById(R.id.blob);
+
 
         mAudioPlayer = new AudioPlayer();
 
@@ -47,20 +47,20 @@ public class FullscreenActivity_standard extends AppCompatActivity {
 
         Instant instant = Instant.now();
 
-        standard_activityVisible = true;
+        voice_led_activityVisible = true;
 
         String timestamp;
         timestamp = DateTimeFormatter.ISO_INSTANT.format(instant);
 
-        startPlayingBeep(R.raw.beep);
+        startPlayingVoice(R.raw.voice);
 
         String log;
         log = timestamp + ";" + TAG;
 
         Log.i(TAG, log);
-        if (log == null) {
+        if(log == null) {
             Log.e("Exception", "Problem with 'log' object ");
-        } else {
+        }else {
             Log.i(TAG, "'log' object is non-null");
             Logger.appendLog(log);
         }
@@ -70,36 +70,42 @@ public class FullscreenActivity_standard extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        stopPlayingBeep();
-        standard_activityVisible = false;
-
+        stopPlayingVoice();
+        voice_led_activityVisible = false;
     }
 
-    private void startPlayingBeep(int resId) {
+    private void startPlayingVoice(int resId) {
         mAudioPlayer.play(this, resId, () -> {
+            if (mVisualizer != null)
+                mVisualizer.hide();
 
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
 
                 public void run() {
-                    if(standard_activityVisible) {
+                    if(voice_led_activityVisible) {
                         launchMainActivity();
                     }
                 }
 
-            }, 15000);
+            },
+                    15000);
         });
-
+        int audioSessionId = mAudioPlayer.getAudioSessionId();
+        if (audioSessionId != -1)
+            mVisualizer.setAudioSessionId(audioSessionId);
     }
 
-    private void stopPlayingBeep() {
+    private void stopPlayingVoice() {
         if (mAudioPlayer != null)
             mAudioPlayer.stop();
+        if (mVisualizer != null)
+            mVisualizer.release();
     }
 
     private void launchMainActivity() {
-        Intent intent = new Intent(FullscreenActivity_standard.this,
-                FullscreenActivity.class);
+        Intent intent = new Intent(FullscreenActivity_voice_LED.this,
+                    FullscreenActivity.class);
         startActivity(intent);
     }
 }

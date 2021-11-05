@@ -10,7 +10,8 @@ import android.view.View;
 import androidx.core.content.ContextCompat;
 
 public class Circle extends View {
-    Paint paint;
+    Paint paintFill;
+    Paint paintStroke;
     Path path;
 
     public Circle(Context context) {
@@ -26,14 +27,25 @@ public class Circle extends View {
         init();
     }
 
-    public int getColor(Context context) {
+    public int getColorFill(Context context) {
+        int col = ContextCompat.getColor(context, R.color.black);
+        return col;
+    }
+
+    public int getColorStroke(Context context) {
         int col = ContextCompat.getColor(context, R.color.red);
         return col;
     }
+
     private void init(){
-        int col = getColor(getContext());
-        paint = new Paint();
-        paint.setColor(col);
+        int colFill = getColorFill(getContext());
+        paintFill = new Paint();
+        paintFill.setColor(colFill);
+
+        int colStroke = getColorStroke(getContext());
+        paintStroke = new Paint();
+        paintStroke.setColor(colStroke);
+        paintStroke.setStrokeWidth(10);
 
 
     }
@@ -44,12 +56,14 @@ public class Circle extends View {
 
         int mRadius;
 
-        paint.setStyle(Paint.Style.FILL);
+        paintFill.setStyle(Paint.Style.FILL);
+        paintStroke.setStyle(Paint.Style.STROKE);
 
         mRadius = getHeight() < getWidth() ? getHeight() : getWidth();
-        mRadius = (int) (mRadius * 0.65 / 2);
+        mRadius = (int) (mRadius * 0.60 / 2);
 
-        canvas.drawCircle(this.getWidth()/2, this.getHeight()/2, mRadius, paint);
+        canvas.drawCircle(this.getWidth()/2, this.getHeight()/2, mRadius, paintFill);
+        canvas.drawCircle(this.getWidth()/2+2, this.getHeight()/2+2, mRadius, paintStroke);
         //drawCircle(cx, cy, radius, paint)
     }
 }

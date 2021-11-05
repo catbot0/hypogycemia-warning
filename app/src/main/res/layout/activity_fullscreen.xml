@@ -44,11 +44,20 @@
             <Button
                 android:id="@+id/voice_btn"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_marginEnd="55dp"
+                android:layout_marginEnd="5dp"
                 android:layout_width="@dimen/buttonWidth"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/ButtonVoice" />
+
+            <Button
+                android:id="@+id/voice_led_btn"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_marginEnd="55dp"
+                android:layout_width="@dimen/buttonWidth"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/ButtonVoiceLed" />
 
         </LinearLayout>
 

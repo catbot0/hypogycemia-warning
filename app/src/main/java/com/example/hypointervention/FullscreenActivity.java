@@ -18,6 +18,7 @@ public class FullscreenActivity extends AppCompatActivity {
     public static final int PERMISSION_REQUEST = 1;
 
     Button voice_button;
+    Button voice_led_button;
     Button standard_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,9 @@ public class FullscreenActivity extends AppCompatActivity {
         voice_button =  findViewById(R.id.voice_btn);
         voice_button.setOnClickListener(v -> launchVoiceActivity());
 
+        voice_led_button =  findViewById(R.id.voice_led_btn);
+        voice_led_button.setOnClickListener(v -> launchVoiceLedActivity());
+
         standard_button = findViewById(R.id.standard_btn);
         standard_button.setOnClickListener(v -> launchStandardActivity());
     }
@@ -43,6 +47,16 @@ public class FullscreenActivity extends AppCompatActivity {
         } else {
             requestPermission();
           }
+    }
+
+    private void launchVoiceLedActivity() {
+        if (checkAudioPermission()) {
+            Intent intent = new Intent(FullscreenActivity.this,
+                    FullscreenActivity_voice_LED.class);
+            startActivity(intent);
+        } else {
+            requestPermission();
+        }
     }
 
     private void launchStandardActivity() {
