@@ -25,7 +25,7 @@
             android:contentDescription="@string/imageDescription" />
 
         <TextView
-            android:id="@+id/textViewWarning"
+            android:id="@+id/warningText"
             android:layout_width="wrap_content"
             android:layout_height="92dp"
             android:layout_gravity="center"
@@ -36,7 +36,7 @@
             tools:targetApi="o" />
 
         <TextView
-            android:id="@+id/textViewRecommendation"
+            android:id="@+id/recommendationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

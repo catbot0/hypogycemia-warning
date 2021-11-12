@@ -3,7 +3,9 @@ package com.example.hypointervention;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,8 +34,37 @@ public class FullscreenActivity_standard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen_standard);
 
-        ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.drawable.ic_standard);
+        ImageView imageView = findViewById(R.id.imageView);
+        TextView warningText = findViewById(R.id.warningText);
+        TextView recommendationText = findViewById(R.id.recommendationText);
+
+        imageView.setVisibility(View.INVISIBLE);
+        warningText.setVisibility(View.INVISIBLE);
+        recommendationText.setVisibility(View.INVISIBLE);
+
+
+        warningText.postDelayed(new Runnable(){
+            @Override
+            public void run()
+            {
+                warningText.setVisibility(View.VISIBLE);
+            }
+        }, 2000);
+
+        recommendationText.postDelayed(new Runnable(){
+            @Override
+            public void run()
+            {
+                recommendationText.setVisibility(View.VISIBLE);
+            }
+        }, 2000);
+
+        imageView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                imageView.setVisibility(View.VISIBLE);
+            }
+        }, 2000);
 
         mAudioPlayer = new AudioPlayer();
 
